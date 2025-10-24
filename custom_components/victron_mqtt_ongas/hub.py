@@ -167,17 +167,22 @@ class VictronSensor(VictronBaseEntity, SensorEntity):
         if isinstance(value, str):
             value = value.replace('\n', ' ')
             _LOGGER.debug("VictronSensor: _on_update_task - Value after newline replacement: %s", value)
-            _LOGGER.debug("VictronSensor: _on_update_task - repr(value): %s", repr(value))
-            _LOGGER.debug("VictronSensor: _on_update_task - value in SYSTEM_STATE_MAPPING: %s", value in SYSTEM_STATE_MAPPING)
-            _LOGGER.debug("VictronSensor: _on_update_task - value in VEBUS_INVERTER_STATE_MAPPING: %s", value in VEBUS_INVERTER_STATE_MAPPING)
-            if self._metric.generic_short_id == "system_state" and value in SYSTEM_STATE_MAPPING:
-                original_mapped_value = value
-                value = SYSTEM_STATE_MAPPING[value]
-                _LOGGER.debug("VictronSensor: _on_update_task - Value after mapping (system_state: %s -> %s): %s", original_mapped_value, value, value)
-            elif self._metric.generic_short_id == "vebus_inverter_state" and value in VEBUS_INVERTER_STATE_MAPPING:
-                original_mapped_value = value
-                value = VEBUS_INVERTER_STATE_MAPPING[value]
-                _LOGGER.debug("VictronSensor: _on_update_task - Value after mapping (vebus_inverter_state: %s -> %s): %s", original_mapped_value, value, value)
+            
+            mapped_value = value
+            if self._metric.generic_short_id == "system_state":
+                if value in SYSTEM_STATE_MAPPING:
+                    mapped_value = SYSTEM_STATE_MAPPING[value]
+                    _LOGGER.debug("VictronSensor: _on_update_task - Mapped system_state: %s -> %s", value, mapped_value)
+                else:
+                    _LOGGER.debug("VictronSensor: _on_update_task - system_state value '%s' not found in mapping.", value)
+            elif self._metric.generic_short_id == "vebus_inverter_state":
+                if value in VEBUS_INVERTER_STATE_MAPPING:
+                    mapped_value = VEBUS_INVERTER_STATE_MAPPING[value]
+                    _LOGGER.debug("VictronSensor: _on_update_task - Mapped vebus_inverter_state: %s -> %s", value, mapped_value)
+                else:
+                    _LOGGER.debug("VictronSensor: _on_update_task - vebus_inverter_state value '%s' not found in mapping.", value)
+            
+            value = mapped_value # Assign the potentially mapped value back to value
         if self._attr_native_value == value:
             return
         self._attr_native_value = value
