@@ -1,5 +1,5 @@
 """Constants for the victron_mqtt integration."""
-DOMAIN = "victron_mqtt"
+DOMAIN = "victron_mqtt_ongas"
 
 CONF_INSTALLATION_ID = "installation_id"
 CONF_MODEL = "model"

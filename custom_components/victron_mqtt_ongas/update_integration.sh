@@ -3,8 +3,8 @@
 # ==== CONFIGURATION ====
 GITHUB_USER="tomer-w"
 GITHUB_REPO="ha-victron-mqtt"
-TARGET_SUBFOLDER="custom_components/victron_mqtt"
-DEST_FOLDER="/config/custom_components/victron_mqtt"
+TARGET_SUBFOLDER="custom_components/victron_mqtt_ongas"
+DEST_FOLDER="/config/custom_components/victron_mqtt_ongas"
 # ========================
 # Usage:
 # Run the script without arguments to update the integration.

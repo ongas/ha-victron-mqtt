@@ -1,4 +1,4 @@
-"""Config flow for victronvenus integration."""
+"""Config flow for victron_mqtt_ongas integration."""
 
 from __future__ import annotations
 

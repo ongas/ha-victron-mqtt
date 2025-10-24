@@ -1,4 +1,4 @@
-"""The victron_mqtt (ongas) integration."""
+"""The victron_mqtt_ongas integration."""
 
 from __future__ import annotations
 
@@ -18,7 +18,7 @@ from .const import DOMAIN, SERVICE_PUBLISH, ATTR_DEVICE_ID, ATTR_METRIC_ID, ATTR
 
 
 _LOGGER = logging.getLogger(__name__)
-_VICTRON_MQTT_LOGGER = logging.getLogger("victron_mqtt")
+_VICTRON_MQTT_LOGGER = logging.getLogger("victron_mqtt_ongas")
 
 # Config schema - this integration is config entry only
 CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
@@ -76,7 +76,7 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
     """Set up the integration."""
     version = getattr(hass.data["integrations"][DOMAIN], "version", 0)
     victron_mqtt_version = await get_package_version("victron_mqtt")
-    _LOGGER.info("Setting up victron_mqtt (ongas) integration. Version: %s. victron_mqtt package version: %s", version, victron_mqtt_version)
+    _LOGGER.info("Setting up victron_mqtt_ongas integration. Version: %s. victron_mqtt package version: %s", version, victron_mqtt_version)
 
     return True
 
