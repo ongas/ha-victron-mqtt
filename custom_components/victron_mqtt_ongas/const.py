@@ -41,3 +41,21 @@ SYSTEM_STATE_MAPPING = {
     "LowPower": "Low Power",
     "ExternalControl": "External Control",
 }
+
+VEBUS_INVERTER_STATE_MAPPING = {
+    "Off": "Off",
+    "LowPower": "Low Power",
+    "Fault": "Fault",
+    "Bulk": "Bulk charging",
+    "Absorption": "Absorption charging",
+    "Float": "Float charging",
+    "Storage": "Storage mode",
+    "RepeatAbs": "Repeat Absorption",
+    "Equalize": "Equalize charging",
+    "Passthru": "Passthru",
+    "Inverting": "Inverting",
+    "PowerAssist": "PowerAssist",
+    "Bypass": "Bypass",
+    "Charge": "Charge",
+    "Discharge": "Discharge",
+}

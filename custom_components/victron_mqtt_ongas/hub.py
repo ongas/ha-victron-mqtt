@@ -31,7 +31,7 @@ from victron_mqtt import (
     DeviceType
 )
 
-from .const import CONF_INSTALLATION_ID, CONF_MODEL, CONF_SERIAL, CONF_UPDATE_FREQUENCY_SECONDS, DEFAULT_UPDATE_FREQUENCY_SECONDS, DOMAIN, CONF_ROOT_TOPIC_PREFIX, CONF_OPERATION_MODE, CONF_EXCLUDED_DEVICES, SYSTEM_STATE_MAPPING
+from .const import CONF_INSTALLATION_ID, CONF_MODEL, CONF_SERIAL, CONF_UPDATE_FREQUENCY_SECONDS, DEFAULT_UPDATE_FREQUENCY_SECONDS, DOMAIN, CONF_ROOT_TOPIC_PREFIX, CONF_OPERATION_MODE, CONF_EXCLUDED_DEVICES, SYSTEM_STATE_MAPPING, VEBUS_INVERTER_STATE_MAPPING
 from .common import VictronBaseEntity
 
 _LOGGER = logging.getLogger(__name__)
@@ -170,7 +170,11 @@ class VictronSensor(VictronBaseEntity, SensorEntity):
             if self._metric.generic_short_id == "system_state" and value in SYSTEM_STATE_MAPPING:
                 original_mapped_value = value
                 value = SYSTEM_STATE_MAPPING[value]
-                _LOGGER.debug("VictronSensor: _on_update_task - Value after mapping (%s -> %s): %s", original_mapped_value, value, value)
+                _LOGGER.debug("VictronSensor: _on_update_task - Value after mapping (system_state: %s -> %s): %s", original_mapped_value, value, value)
+            elif self._metric.generic_short_id == "vebus_inverter_state" and value in VEBUS_INVERTER_STATE_MAPPING:
+                original_mapped_value = value
+                value = VEBUS_INVERTER_STATE_MAPPING[value]
+                _LOGGER.debug("VictronSensor: _on_update_task - Value after mapping (vebus_inverter_state: %s -> %s): %s", original_mapped_value, value, value)
         if self._attr_native_value == value:
             return
         self._attr_native_value = value
