@@ -163,10 +163,14 @@ class VictronSensor(VictronBaseEntity, SensorEntity):
         super().__init__(device, metric, device_info, "sensor")
 
     def _on_update_task(self, value: Any) -> None:
+        _LOGGER.debug("VictronSensor: _on_update_task - Original value: %s, Metric ID: %s", value, self._metric.generic_short_id)
         if isinstance(value, str):
             value = value.replace('\n', ' ')
+            _LOGGER.debug("VictronSensor: _on_update_task - Value after newline replacement: %s", value)
             if self._metric.generic_short_id == "system_state" and value in SYSTEM_STATE_MAPPING:
+                original_mapped_value = value
                 value = SYSTEM_STATE_MAPPING[value]
+                _LOGGER.debug("VictronSensor: _on_update_task - Value after mapping (%s -> %s): %s", original_mapped_value, value, value)
         if self._attr_native_value == value:
             return
         self._attr_native_value = value
