@@ -162,11 +162,9 @@ class VictronSensor(VictronBaseEntity, SensorEntity):
         self._attr_native_value = metric.value
         super().__init__(device, metric, device_info, "sensor")
 
-    def __repr__(self) -> str:
-        """Return a string representation of the sensor."""
-        return f"VictronSensor({super().__repr__()})"
-
     def _on_update_task(self, value: Any) -> None:
+        if isinstance(value, str):
+            value = value.replace('\n', ' ')
         if self._attr_native_value == value:
             return
         self._attr_native_value = value
