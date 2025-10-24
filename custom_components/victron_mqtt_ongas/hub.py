@@ -31,7 +31,7 @@ from victron_mqtt import (
     DeviceType
 )
 
-from .const import CONF_INSTALLATION_ID, CONF_MODEL, CONF_SERIAL, CONF_UPDATE_FREQUENCY_SECONDS, DEFAULT_UPDATE_FREQUENCY_SECONDS, DOMAIN, CONF_ROOT_TOPIC_PREFIX, CONF_OPERATION_MODE, CONF_EXCLUDED_DEVICES
+from .const import CONF_INSTALLATION_ID, CONF_MODEL, CONF_SERIAL, CONF_UPDATE_FREQUENCY_SECONDS, DEFAULT_UPDATE_FREQUENCY_SECONDS, DOMAIN, CONF_ROOT_TOPIC_PREFIX, CONF_OPERATION_MODE, CONF_EXCLUDED_DEVICES, SYSTEM_STATE_MAPPING
 from .common import VictronBaseEntity
 
 _LOGGER = logging.getLogger(__name__)
@@ -165,6 +165,8 @@ class VictronSensor(VictronBaseEntity, SensorEntity):
     def _on_update_task(self, value: Any) -> None:
         if isinstance(value, str):
             value = value.replace('\n', ' ')
+            if self._metric.generic_short_id == "system_state" and value in SYSTEM_STATE_MAPPING:
+                value = SYSTEM_STATE_MAPPING[value]
         if self._attr_native_value == value:
             return
         self._attr_native_value = value

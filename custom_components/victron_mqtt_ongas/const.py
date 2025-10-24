@@ -23,3 +23,21 @@ SERVICE_PUBLISH = "publish"
 ATTR_METRIC_ID = "metric_id"
 ATTR_DEVICE_ID = "device_id"
 ATTR_VALUE = "value"
+
+SYSTEM_STATE_MAPPING = {
+    "Float": "Float charging",
+    "Bulk": "Bulk charging",
+    "Absorption": "Absorption charging",
+    "Equalize": "Equalize charging",
+    "Storage": "Storage mode",
+    "Discharged": "Discharged",
+    "Fault": "Fault",
+    "Inverting": "Inverting",
+    "PowerAssist": "PowerAssist",
+    "Bypass": "Bypass",
+    "Off": "Off",
+    "Starting": "Starting",
+    "Deactivated": "Deactivated",
+    "LowPower": "Low Power",
+    "ExternalControl": "External Control",
+}
