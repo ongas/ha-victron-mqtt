@@ -164,6 +164,7 @@ class VictronSensor(VictronBaseEntity, SensorEntity):
 
     def _on_update_task(self, value: Any) -> None:
         _LOGGER.debug("VictronSensor: _on_update_task - Original value: %s, Metric ID: %s", value, self._metric.generic_short_id)
+        _LOGGER.debug("VictronSensor: _on_update_task - Type of Original value: %s", type(value))
         if isinstance(value, str):
             value = value.replace('\n', ' ')
             _LOGGER.debug("VictronSensor: _on_update_task - Value after newline replacement: %s", value)
