@@ -103,7 +103,7 @@ Some users prefer to reduce the direct load on their Victron server and use brid
 
 2. **Restart the Mosquitto Add-on** to apply the bridge configuration
 
-3. **Configure the Integration**: When setting up the Victron MQTT Integration:
+3. **Configure the Integration**: When setting up the Victron MQTT Integration (ongas)
    - Host: `core-mosquitto` (the internal hostname for the HA MQTT broker)
    - Port: `1883`
    - Username: Your MQTT broker username

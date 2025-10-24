@@ -1,4 +1,4 @@
-"""The victron_mqtt integration."""
+"""The victron_mqtt (ongas) integration."""
 
 from __future__ import annotations
 
@@ -76,7 +76,7 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
     """Set up the integration."""
     version = getattr(hass.data["integrations"][DOMAIN], "version", 0)
     victron_mqtt_version = await get_package_version("victron_mqtt")
-    _LOGGER.info("Setting up victron_mqtt integration. Version: %s. victron_mqtt package version: %s", version, victron_mqtt_version)
+    _LOGGER.info("Setting up victron_mqtt (ongas) integration. Version: %s. victron_mqtt package version: %s", version, victron_mqtt_version)
 
     return True
 

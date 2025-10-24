@@ -1,6 +1,6 @@
 {
   "domain": "victron_mqtt",
-  "name": "Victron MQTT Integration",
+  "name": "Victron MQTT Integration (ongas)",
   "codeowners": [
     "@tomer-w"
   ],
