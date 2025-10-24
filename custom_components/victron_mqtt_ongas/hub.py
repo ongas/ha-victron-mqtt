@@ -167,9 +167,6 @@ class VictronSensor(VictronBaseEntity, SensorEntity):
         if isinstance(value, str):
             value = value.replace('\n', ' ')
             _LOGGER.debug("VictronSensor: _on_update_task - Value after newline replacement: %s", value)
-            _LOGGER.debug("VictronSensor: _on_update_task - Type of value: %s", type(value))
-            _LOGGER.debug("VictronSensor: _on_update_task - 'Float' in SYSTEM_STATE_MAPPING: %s", "Float" in SYSTEM_STATE_MAPPING)
-            _LOGGER.debug("VictronSensor: _on_update_task - 'Float' in VEBUS_INVERTER_STATE_MAPPING: %s", "Float" in VEBUS_INVERTER_STATE_MAPPING)
             if self._metric.generic_short_id == "system_state" and value in SYSTEM_STATE_MAPPING:
                 original_mapped_value = value
                 value = SYSTEM_STATE_MAPPING[value]
